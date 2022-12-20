@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 
 import { Component } from 'react';
@@ -5,7 +6,6 @@ import { Component } from 'react';
 export class ContactForm extends Component {
   
   state = {
-    contacts: [],
     name: '',
     number: ''
   }
@@ -20,7 +20,6 @@ export class ContactForm extends Component {
     event.preventDefault();
     this.props.onFormSubmit(this.state);
     this.reset();
-    console.log(event);
     event.target[0].value = "";
     event.target[1].value = "";
   };
@@ -57,3 +56,9 @@ export class ContactForm extends Component {
     );
   }
 }
+
+
+ContactForm.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
+  btnText: PropTypes.string
+};

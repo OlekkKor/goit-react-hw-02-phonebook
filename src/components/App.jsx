@@ -13,7 +13,7 @@ export class App extends Component{
 
   onInputChange = filter => {
     this.setState({
-     filter: filter
+     filter,
     });
   };
 
@@ -52,6 +52,8 @@ export class App extends Component{
 
 
   render() {
+    const filteredContact = this.filteredContacts();
+    const {filter} = this.state;
     return( 
 
       <div style={{
@@ -67,7 +69,13 @@ export class App extends Component{
 
       <h2>Contacts</h2>
       <Filter onInputChange={this.onInputChange} />
-      <ContactList data={this.state.contacts} deleteToDo={this.deleteToDo} filter = {this.state.filter} filteredContacts={this.filteredContacts} />
+
+      
+      {filter.length > 0 ? (
+       <ContactList data={filteredContact} deleteToDo={this.deleteToDo}/>
+      ) : (
+        <ContactList data={this.state.contacts} deleteToDo={this.deleteToDo}/>
+      )}
       </div>
     )
   }
